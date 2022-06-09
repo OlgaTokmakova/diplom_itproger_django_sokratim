@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'website/main.css' %}">
+</head>
+<body>
+<div class="wrapper">
+    <div class="container">
+        <header class="container">
+            <div id="everything-header">
+                <div id="logo">
+                    <img src="https://static-cdn.jtvnw.net/jtv_user_pictures/e5b4c3ac-62c9-4b08-b7e3-e1541ff80801-profile_image-300x300.png" alt="cat" id="one">
+                    <span>Уберем все<br>лишнее из ссылки!</span>
+                </div>
+                <div class="navbar">
+                    <ul id="navbar">
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="/">Про нас</a></li>
+                        {% if not user.is_authenticated %}
+                        <li><a href="{% url 'user' %}">Войти</a></li>
+                        <li><a href="{% url 'reg' %}">Регистрация</a></li>
+                        {% else %}
+                        <li><a href="{% url 'profile' %}">Личный кабинет</a></li>
+                        <li><a href="{% url 'links' %}">Ссылки</a></li>
+                        <li><a href="{% url 'exit' %}">Выйти</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+        </div>
+    </header>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+        <div class="footer">
+        <div class="social">
+            <ul id="navlinks">
+                    <li><a href="https://twitter.com/"><img src="{% static 'website/img/twit.png' %}"></a></li>
+                    <li><a href="https://www.youtube.com/"><img src="{% static 'website/img/yout.png' %}"></a></li>
+                    <li><a href="https://www.instagram.com/"><img src="{% static 'website/img/inst.png' %}"></a></li>
+            </ul>
+            </div>
+        <div class="footer1">
+            <p>Все права защищены ©</p>
+        </div>
+            </div>
+    </footer>
+</div>
+</body>
+</html>
